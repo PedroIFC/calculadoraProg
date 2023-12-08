@@ -142,3 +142,24 @@ buttons.forEach((btn) => {
 
     })
 })
+
+
+
+//código para lidar com eventos de teclado
+window.addEventListener('keydown', (e) => {
+    const keyValue = e.key;
+
+    if (!isNaN(keyValue) || keyValue === '.') {
+        // se a tecla pressionada for um número ou ponto decimal
+        calc.addDigit(keyValue);
+    } else if (['+', '-', '*', '/'].includes(keyValue)) {
+        // se a tecla pressionada for uma operação
+        calc.processOperation(keyValue);
+    } else if (keyValue === 'Enter') {
+        // se a tecla pressionada for Enter
+        calc.processEqualOperator();
+    } else if (keyValue === 'Backspace') {
+        // se a tecla pressionada for Backspace
+        calc.processDelOperator();
+    }
+});
